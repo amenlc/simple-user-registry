@@ -1,6 +1,7 @@
 package com.javaexercise.userregistryservice.filter;
 
 import com.javaexercise.userregistryservice.service.JwtService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtService jwtService;
     private UserDetailsService securityUserDetailsService;
 
-    public JwtFilter(JwtService jwtService, UserDetailsService securityUserDetailsService) {
+    public JwtFilter(JwtService jwtService,
+                     @Qualifier(value = "security-user-details") UserDetailsService securityUserDetailsService) {
         this.jwtService = jwtService;
         this.securityUserDetailsService = securityUserDetailsService;
     }
