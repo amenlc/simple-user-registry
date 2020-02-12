@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -23,9 +24,15 @@ public class User {
     @Pattern(regexp=".+@.+\\.[a-z]+")
     private String email;
 
-    @NotBlank(message = "L clave no debe estar vacio")
+    @NotBlank(message = "La clave no debe estar vacio")
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Phone> phones;
+
+    private Date created;
+    private Date modified;
+    private Date lastLogin;
+    private String token;
+    private boolean active;
 }
