@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,11 +29,6 @@ class SecurityUserDetailsServiceTest {
     @InjectMocks
     SecurityUserDetailsService securityUserDetailsService;
 
-//    @BeforeEach
-//    void setUp() {
-//
-//    }
-
     @Test
     void when_noUserRegistered_loadUserByUsername() {
         // Optional<User> oUser = Optional.of(new User())
@@ -44,7 +40,8 @@ class SecurityUserDetailsServiceTest {
     @Test
     void when_userRegistered_loadUserByUsername() {
          Optional<User> oUser = Optional.of(new User(
-                 1l,"Richard Tapias", "registeradmin@gmail.com", "admin123", Collections.emptyList()
+                 1l,"Richard Tapias", "registeradmin@gmail.com", "admin123",
+                 Collections.emptyList(), new Date(), new Date(), new Date(), "token_test", false
          ));
         when(userRepositoryMock.findByEmail("registeradmin@gmail.com")).thenReturn(oUser);
         assertNotNull(securityUserDetailsService.loadUserByUsername("registeradmin@gmail.com"));

@@ -1,4 +1,4 @@
-package com.javaexercise.userregistryservice.model;
+package com.javaexercise.userregistryservice.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
